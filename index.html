@@ -1987,7 +1987,6 @@ target="_blank">
         // ================================================================
         const firebaseConfig = {
             apiKey: "AIzaSyBgJ6d_Ii3K4y1EER6rVQka3EA-_gQITIQ",
-            authDomain: "income-tax-11.firebaseapp.com",
             authDomain: "income-tax11.github.io",
             projectId: "income-tax-11",
             storageBucket: "income-tax-11.firebasestorage.app",
@@ -2154,220 +2153,194 @@ target="_blank">
         //  AUTHENTICATION FUNCTIONS
         // ================================================================
         async function register() {
-    const name = document.getElementById('regName').value.trim();
-    const email = document.getElementById('regEmail').value.trim();
-    const phone = document.getElementById('regPhone').value.trim();
-    const pass = document.getElementById('regPassword').value;
-    const confirm = document.getElementById('regConfirmPassword').value;
-    let refCode = document.getElementById('regReferralCode').value.trim().toUpperCase();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const pass = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirmPassword').value;
+            let refCode = document.getElementById('regReferralCode').value.trim().toUpperCase();
 
-    if (!name || !email || !phone || !pass) {
-        showToast('সব তথ্য দিন', 'error');
-        return;
-    }
-    if (pass !== confirm) {
-        showToast('পাসওয়ার্ড মিলছে না', 'error');
-        return;
-    }
-    if (pass.length < 6) {
-        showToast('পাসওয়ার্ড ৬ অক্ষরের বেশি দিন', 'error');
-        return;
-    }
-
-    const btn = document.getElementById('registerBtn');
-    btn.disabled = true;
-    btn.textContent = '⏳ প্রক্রিয়াকরণ...';
-
-    try {
-        // 📌 স্টেপ 1: ইউজারনেম চেক করুন
-        console.log('🔍 ইউজারনেম চেক:', name);
-        const nameCheck = await db.collection('users').doc(name).get();
-        if (nameCheck.exists) {
-            showToast('এই ইউজার নাম ইতিমধ্যে নেওয়া হয়েছে', 'error');
-            btn.disabled = false;
-            btn.textContent = '✅ রেজিস্ট্রেশন';
-            return;
-        }
-
-        // 📌 স্টেপ 2: Firebase Authentication তৈরি করুন
-        console.log('📝 Authentication তৈরি করা হচ্ছে...');
-        const cred = await auth.createUserWithEmailAndPassword(email, pass);
-        const uid = cred.user.uid;
-        console.log('✅ Authentication তৈরি হয়েছে. UID:', uid);
-
-        // 📌 স্টেপ 3: রেফারেল কোড চেক করুন
-        let referredBy = null;
-        if (refCode) {
-            console.log('🔍 রেফারেল কোড চেক:', refCode);
-            const snap = await db.collection('users')
-                .where('referralCode', '==', refCode)
-                .limit(1)
-                .get();
-
-            if (!snap.empty) {
-                const refDoc = snap.docs[0];
-                referredBy = refDoc.id;
-                console.log('✅ রেফারেল পাওয়া গেছে:', referredBy);
-            } else {
-                console.log('⚠️ রেফারেল কোড পাওয়া যায়নি');
+            if (!name || !email || !phone || !pass) {
+                showToast('সব তথ্য দিন', 'error');
+                return;
             }
-        }
-
-        // 📌 স্টেপ 4: ইউজার ডেটা তৈরি করুন
-        const newUser = {
-            balance: 0,
-            premiumLevel: 0,
-            silverBonusTaken: false,
-            referralCode: generateReferralCode(name),
-            referredBy: referredBy,
-            referralEarnings: 0,
-            totalReferrals: 0,
-            profile: {
-                name: name,
-                email: email,
-                phone: phone,
-                address: ''
-            },
-            transactions: [],
-            depositRequests: [],
-            withdrawRequests: [],
-            uid: uid,
-            username: name,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        };
-
-        console.log('📝 ইউজার ডেটা তৈরি করা হচ্ছে:', newUser);
-
-        // 📌 স্টেপ 5: ⭐ Firestore-এ ডকুমেন্ট তৈরি করুন (এখানে সমস্যা ছিল)
-        try {
-            console.log('💾 Firestore-এ ডকুমেন্ট সেভ করা হচ্ছে...');
-            
-            // ⭐ প্রথমে collection টি সঠিক কিনা চেক করুন
-            console.log('📁 Collection: users, Document ID:', name);
-            
-            // ⭐ ডকুমেন্ট সেভ করুন
-            await db.collection('users').doc(name).set(newUser);
-            
-            console.log('✅ ডকুমেন্ট সেভ হয়েছে!');
-            
-        } catch (firestoreError) {
-            console.error('❌ Firestore Error:', firestoreError);
-            console.error('📋 Error Code:', firestoreError.code);
-            console.error('📝 Error Message:', firestoreError.message);
-            
-            // ⚠️ যদি Firestore ফেইল করে, Authentication ইউজার ডিলিট করুন
-            if (auth.currentUser) {
-                try {
-                    await auth.currentUser.delete();
-                    console.log('🗑️ Authentication ইউজার ডিলিট করা হয়েছে');
-                } catch (e) {
-                    console.error('Authentication ইউজার ডিলিট করতে সমস্যা:', e);
-                }
+            if (pass !== confirm) {
+                showToast('পাসওয়ার্ড মিলছে না', 'error');
+                return;
             }
-            
-            showToast('ডকুমেন্ট সেভ করতে সমস্যা: ' + firestoreError.message, 'error');
-            btn.disabled = false;
-            btn.textContent = '✅ রেজিস্ট্রেশন';
-            return;
-        }
-
-        // 📌 স্টেপ 6: ডকুমেন্ট ভেরিফাই করুন
-        console.log('🔍 ডকুমেন্ট ভেরিফাই করা হচ্ছে...');
-        const verifyDoc = await db.collection('users').doc(name).get();
-        
-        if (verifyDoc.exists) {
-            console.log('✅ ডকুমেন্ট সফলভাবে সংরক্ষিত হয়েছে!');
-            console.log('📄 ডকুমেন্ট ডেটা:', verifyDoc.data());
-        } else {
-            console.error('❌ ডকুমেন্ট সংরক্ষিত হয়নি!');
-            showToast('ডকুমেন্ট সংরক্ষণে সমস্যা! আবার চেষ্টা করুন', 'error');
-            
-            // Authentication ইউজার ডিলিট করুন
-            if (auth.currentUser) {
-                try {
-                    await auth.currentUser.delete();
-                } catch (e) {}
+            if (pass.length < 6) {
+                showToast('পাসওয়ার্ড ৬ অক্ষরের বেশি দিন', 'error');
+                return;
             }
-            
-            btn.disabled = false;
-            btn.textContent = '✅ রেজিস্ট্রেশন';
-            return;
-        }
 
-        // 📌 স্টেপ 7: রেফারেল কোড ডকুমেন্ট তৈরি করুন
-        try {
-            await db.collection('referralCodes').doc(newUser.referralCode).set({
-                ownerUid: uid,
-                ownerName: name,
-                createdAt: new Date().toISOString()
-            });
-            console.log('✅ রেফারেল কোড সেভ হয়েছে');
-        } catch (err) {
-            console.error('রেফারেল কোড সেভ করতে সমস্যা:', err);
-        }
+            const btn = document.getElementById('registerBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ প্রক্রিয়াকরণ...';
 
-        // 📌 স্টেপ 8: রেফারেল ডেটা তৈরি করুন (যদি থাকে)
-        if (referredBy) {
             try {
-                await db.collection('referrals').add({
-                    referrer: referredBy,
-                    referee: name,
-                    refereeUid: uid,
-                    line: 1,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                const nameCheck = await db.collection('users').doc(name).get();
+                if (nameCheck.exists) {
+                    showToast('এই ইউজার নাম ইতিমধ্যে নেওয়া হয়েছে', 'error');
+                    btn.disabled = false;
+                    btn.textContent = '✅ রেজিস্ট্রেশন';
+                    return;
+                }
+
+                const cred = await auth.createUserWithEmailAndPassword(email, pass);
+                const uid = cred.user.uid;
+
+                let referredBy = null;
+                if (refCode) {
+                    const snap = await db.collection('users')
+                        .where('referralCode', '==', refCode)
+                        .limit(1)
+                        .get();
+
+                    if (!snap.empty) {
+                        const refDoc = snap.docs[0];
+                        referredBy = refDoc.id;
+                        console.log('✅ রেফারেল পাওয়া গেছে:', referredBy);
+                    } else {
+                        console.log('⚠️ রেফারেল কোড পাওয়া যায়নি');
+                    }
+                }
+
+                const newUser = {
+                    balance: 0,
+                    premiumLevel: 0,
+                    silverBonusTaken: false,
+                    referralCode: generateReferralCode(name),
+                    referredBy: referredBy,
+                    referralEarnings: 0,
+                    totalReferrals: 0,
+                    profile: {
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        address: ''
+                    },
+                    transactions: [],
+                    depositRequests: [],
+                    withdrawRequests: [],
+                    uid: uid,
+                    username: name,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+
+                await db.collection('users').doc(name).set(newUser);
+
+                // ================================================================
+                //  ✅ রেফারেল ডেটা তৈরি করুন - ১ম লাইনের জন্য
+                // ================================================================
+                if (referredBy) {
+                    try {
+                        // রেফারেল ডকুমেন্ট তৈরি করুন (১ম লাইন)
+                        await db.collection('referrals').add({
+                            referrer: referredBy,
+                            referee: name,
+                            refereeUid: uid,
+                            line: 1,
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                            createdAt: new Date().toISOString()
+                        });
+                        console.log('✅ ১ম লাইন রেফারেল তৈরি হয়েছে:', referredBy, '→', name);
+
+                        // রেফারারের totalReferrals আপডেট করুন
+                        const referrerDoc = await getUserDocRef(referredBy).get();
+                        if (referrerDoc.exists) {
+                            const refData = referrerDoc.data();
+                            const currentTotal = refData.totalReferrals || 0;
+                            await getUserDocRef(referredBy).update({
+                                totalReferrals: currentTotal + 1
+                            });
+                            console.log(`✅ ${referredBy} এর totalReferrals আপডেট: ${currentTotal + 1}`);
+                        }
+
+                        // ================================================================
+                        //  ✅ ২য় লাইন চেক করুন - রেফারারের রেফারার কে?
+                        // ================================================================
+                        const referrerOfReferrer = await getUserDocRef(referredBy).get();
+                        if (referrerOfReferrer.exists) {
+                            const refOfRefData = referrerOfReferrer.data();
+                            const secondLevelReferrer = refOfRefData.referredBy;
+                            
+                            if (secondLevelReferrer) {
+                                // ২য় লাইন রেফারেল তৈরি করুন
+                                await db.collection('referrals').add({
+                                    referrer: secondLevelReferrer,
+                                    referee: name,
+                                    refereeUid: uid,
+                                    line: 2,
+                                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                                    createdAt: new Date().toISOString()
+                                });
+                                console.log('✅ ২য় লাইন রেফারেল তৈরি হয়েছে:', secondLevelReferrer, '→', name);
+
+                                // ================================================================
+                                //  ✅ ৩য় লাইন চেক করুন
+                                // ================================================================
+                                const secondLevelUser = await getUserDocRef(secondLevelReferrer).get();
+                                if (secondLevelUser.exists) {
+                                    const secondLevelData = secondLevelUser.data();
+                                    const thirdLevelReferrer = secondLevelData.referredBy;
+                                    
+                                    if (thirdLevelReferrer) {
+                                        await db.collection('referrals').add({
+                                            referrer: thirdLevelReferrer,
+                                            referee: name,
+                                            refereeUid: uid,
+                                            line: 3,
+                                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                                            createdAt: new Date().toISOString()
+                                        });
+                                        console.log('✅ ৩য় লাইন রেফারেল তৈরি হয়েছে:', thirdLevelReferrer, '→', name);
+                                    }
+                                }
+                            }
+                        }
+
+                    } catch (err) {
+                        console.error('রেফারেল ডেটা তৈরি করতে সমস্যা:', err);
+                    }
+                }
+
+                await db.collection('referralCodes').doc(newUser.referralCode).set({
+                    ownerUid: uid,
+                    ownerName: name,
                     createdAt: new Date().toISOString()
                 });
-                console.log('✅ ১ম লাইন রেফারেল তৈরি হয়েছে');
 
-                // রেফারারের totalReferrals আপডেট করুন
-                const referrerDoc = await getUserDocRef(referredBy).get();
-                if (referrerDoc.exists) {
-                    const refData = referrerDoc.data();
-                    const currentTotal = refData.totalReferrals || 0;
-                    await getUserDocRef(referredBy).update({
-                        totalReferrals: currentTotal + 1
-                    });
-                    console.log(`✅ ${referredBy} এর totalReferrals আপডেট`);
-                }
+                Object.assign(user, newUser);
+                currentUid = uid;
+                currentUsername = name;
+
+                showToast('🎉 রেজিস্ট্রেশন সফল!', 'success');
+
+                document.getElementById('authContainer').classList.add('hidden');
+                document.getElementById('mainApp').classList.add('active');
+                document.getElementById('mainApp').style.display = 'flex';
+
+                await loadConfig();
+                await updateUI();
+                showDashboard();
+
             } catch (err) {
-                console.error('রেফারেল ডেটা তৈরি করতে সমস্যা:', err);
+                console.error('রেজিস্ট্রেশন Error:', err);
+                if (err.code === 'auth/email-already-in-use') {
+                    showToast('এই ইমেইল ইতিমধ্যে ব্যবহার করা হয়েছে', 'error');
+                } else if (err.code === 'auth/weak-password') {
+                    showToast('পাসওয়ার্ড খুব সহজ। ৬ অক্ষরের বেশি দিন', 'error');
+                } else {
+                    showToast(err.message, 'error');
+                }
+                if (auth.currentUser) {
+                    try { await auth.currentUser.delete(); } catch (e) {}
+                }
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '✅ রেজিস্ট্রেশন';
             }
         }
-
-        // 📌 স্টেপ 9: লোকাল ডেটা সেট করুন
-        Object.assign(user, newUser);
-        currentUid = uid;
-        currentUsername = name;
-
-        // 📌 স্টেপ 10: UI আপডেট করুন
-        showToast('🎉 রেজিস্ট্রেশন সফল!', 'success');
-        document.getElementById('authContainer').classList.add('hidden');
-        document.getElementById('mainApp').classList.add('active');
-        document.getElementById('mainApp').style.display = 'flex';
-
-        await loadConfig();
-        await updateUI();
-        showDashboard();
-
-    } catch (err) {
-        console.error('❌ রেজিস্ট্রেশন Error:', err);
-        console.error('❌ Error Code:', err.code);
-        console.error('❌ Error Message:', err.message);
-        
-        if (err.code === 'auth/email-already-in-use') {
-            showToast('এই ইমেইল ইতিমধ্যে ব্যবহার করা হয়েছে', 'error');
-        } else if (err.code === 'auth/weak-password') {
-            showToast('পাসওয়ার্ড খুব সহজ। ৬ অক্ষরের বেশি দিন', 'error');
-        } else if (err.code === 'permission-denied') {
-            showToast('⚠️ Firestore permission denied!', 'error');
-        } else {
-            showToast('রেজিস্ট্রেশন ব্যর্থ: ' + err.message, 'error');
-        }
-    } finally {
-        btn.disabled = false;
-        btn.textContent = '✅ রেজিস্ট্রেশন';
-    }
-}
 
         async function login() {
             const usernameOrEmail = document.getElementById('loginUsername').value.trim();
