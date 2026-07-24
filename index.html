@@ -146,6 +146,30 @@
             background: #fff;
         }
 
+        #regReferralCode {
+            border-color: #FF9800;
+            background: #fff8f0;
+            transition: all 0.3s ease;
+        }
+
+        #regReferralCode:focus {
+            border-color: #E65100;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(255, 152, 0, 0.15);
+        }
+
+        #regReferralCode.error {
+            border-color: #dc2626;
+            background: #fee2e2;
+        }
+
+        .ref-code-hint {
+            font-size: 11px;
+            color: #E65100;
+            margin: -8px 0 12px 16px;
+            font-weight: 500;
+        }
+
         .auth-btn {
             width: 100%;
             padding: 15px;
@@ -646,30 +670,155 @@
             color: #64748b;
         }
 
-        .refer-link-box {
+        /* রেফার লিংক ও কোড বক্স */
+        .ref-link-code-box {
             background: #f1f5f9;
-            padding: 10px 14px;
-            border-radius: 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            margin: 10px 0;
+            border-radius: 20px;
+            padding: 14px 16px;
+            margin: 12px 0;
             border: 1px solid #e9edf2;
         }
 
-        .refer-link-box a {
-            font-size: 13px;
-            word-break: break-all;
-            color: #0b1a2e;
-            flex: 1;
-            text-decoration: none;
-            font-weight: 500;
+        .ref-link-code-box .ref-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
         }
 
-        .refer-link-box a:hover {
-            text-decoration: underline;
+        .ref-link-code-box .ref-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .ref-link-code-box .ref-label {
+            font-weight: 600;
+            font-size: 13px;
+            color: #0b1a2e;
+            min-width: 65px;
+        }
+
+        .ref-link-code-box .ref-value {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            word-break: break-all;
+            background: #fff;
+            border: 1px solid #e9edf2;
+            color: #0b1a2e;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .ref-link-code-box .ref-value:hover {
+            border-color: #FF9800;
+            background: #fff8f0;
+        }
+
+        .ref-link-code-box .ref-value.code-value {
+            background: #fff3e0;
+            border-color: #FF9800;
+            font-size: 14px;
+            font-weight: 700;
+            color: #E65100;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .ref-link-code-box .copy-btn {
+            padding: 8px 16px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            min-width: 60px;
+            font-family: inherit;
+        }
+
+        .ref-link-code-box .copy-btn.link-copy {
+            background: #0b1a2e;
+            color: #fff;
+        }
+
+        .ref-link-code-box .copy-btn.link-copy:hover {
+            background: #1a2f44;
+            transform: scale(1.04);
+        }
+
+        .ref-link-code-box .copy-btn.code-copy {
+            background: #FF9800;
+            color: #fff;
+        }
+
+        .ref-link-code-box .copy-btn.code-copy:hover {
+            background: #F57C00;
+            transform: scale(1.04);
+        }
+
+        .ref-link-code-box .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .ref-link-code-box .ref-hint {
+            margin-top: 10px;
+            font-size: 11px;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        .ref-link-code-box .ref-hint strong {
             color: #FF9800;
+        }
+
+        /* ===== শেয়ার বাটন ===== */
+        .share-btn {
+            transition: all 0.25s ease !important;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !important;
+            min-width: 80px;
+            justify-content: center;
+            border: none !important;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
+        }
+
+        .share-btn:active {
+            transform: scale(0.95) !important;
+        }
+
+        .share-btn span {
+            font-size: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .share-btn {
+                font-size: 11px !important;
+                padding: 6px 12px !important;
+                min-width: 60px;
+            }
+            .share-btn span {
+                font-size: 14px !important;
+            }
+            .ref-link-code-box .ref-row {
+                flex-wrap: wrap;
+            }
+            .ref-link-code-box .ref-label {
+                min-width: 100%;
+                font-size: 12px;
+            }
+            .ref-link-code-box .ref-value {
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+            .ref-link-code-box .copy-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+                min-width: 50px;
+            }
         }
 
         .line-stats {
@@ -1266,12 +1415,365 @@
                 font-size: 14px;
                 height: 44px;
             }
+            .ref-link-code-box .ref-row {
+                flex-wrap: wrap;
+            }
+            .ref-link-code-box .ref-label {
+                min-width: 100%;
+                font-size: 12px;
+            }
+            .ref-link-code-box .ref-value {
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+            .ref-link-code-box .copy-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+                min-width: 50px;
+            }
         }
     </style>
+
+    <!-- রিফ্রেশ/লগআউট বাটন -->
+    <div id="refreshSection" style="position:fixed; top:12px; right:16px; z-index:999999;">
+        <button id="refreshLogoutBtn" 
+                style="width:44px; height:44px; border-radius:50%; border:none; background:linear-gradient(135deg, #FF9800, #F57C00); color:#fff; font-size:20px; cursor:pointer; box-shadow:0 4px 16px rgba(255,152,0,0.30); transition:all 0.3s ease; display:flex; align-items:center; justify-content:center;"
+                onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 6px 24px rgba(255,152,0,0.50)';"
+                onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(255,152,0,0.30)';"
+                onclick="handleRefreshLogout()"
+                title="রিফ্রেশ & লগআউট">
+            🔄
+        </button>
+    </div>
+
+    <style>
+        @keyframes spinRefresh {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .refreshing {
+            animation: spinRefresh 0.8s ease-in-out;
+        }
+    </style>
+
+    <!-- স্প্ল্যাশ ওভারলে -->
+    <style>
+        #splashOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #0b1a2e 0%, #162b3f 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999999;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        #splashOverlay.hidden {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        .splash-wallpaper {
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 9 / 16;
+            margin: 0 auto;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .splash-deco {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .splash-deco.d1 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255, 152, 0, 0.08), transparent 70%);
+            top: -120px;
+            right: -100px;
+        }
+        .splash-deco.d2 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255, 152, 0, 0.05), transparent 70%);
+            bottom: -180px;
+            left: -120px;
+        }
+        .splash-deco.d3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255, 152, 0, 0.04), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .splash-logo-wrap {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 16px;
+        }
+        .splash-logo-wrap .logo-ring {
+            position: absolute;
+            inset: -8px;
+            border: 2px solid rgba(255, 152, 0, 0.15);
+            border-radius: 50%;
+            animation: spinRing 8s linear infinite;
+        }
+        @keyframes spinRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .splash-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            border-radius: 28px;
+            font-size: 40px;
+            color: #fff;
+            box-shadow: 0 12px 40px rgba(255, 152, 0, 0.30);
+            position: relative;
+            z-index: 2;
+        }
+
+        .splash-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 2;
+            margin-top: 4px;
+        }
+        .splash-title span {
+            color: #FF9800;
+        }
+
+        .splash-subtitle {
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+            margin-top: 4px;
+        }
+
+        .splash-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FF9800, transparent);
+            margin: 12px auto 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .splash-tagline {
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+            margin-top: 6px;
+        }
+        .splash-tagline strong {
+            color: #FF9800;
+            font-weight: 600;
+        }
+
+        .splash-loader {
+            width: 80%;
+            max-width: 300px;
+            margin-top: 32px;
+            position: relative;
+            z-index: 2;
+        }
+        .splash-loader .bar-bg {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .splash-loader .bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #FF9800, #F57C00, #FF9800);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            transition: width 0.1s linear;
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .splash-loader .bar-dots {
+            display: flex;
+            justify-content: space-between;
+            margin-top: -2px;
+            padding: 0 2px;
+        }
+        .splash-loader .bar-dots span {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            transition: background 0.3s;
+        }
+        .splash-loader .bar-dots span.active {
+            background: #FF9800;
+        }
+
+        .splash-loader .loader-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 10px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+        .splash-loader .loader-percent {
+            font-weight: 700;
+            color: #FF9800;
+            font-size: 14px;
+        }
+
+        .splash-footer {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #475569;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        .splash-footer span {
+            color: #64748b;
+        }
+
+        @media (max-width: 480px) {
+            .splash-title { font-size: 28px; }
+            .splash-logo { width: 64px; height: 64px; font-size: 32px; border-radius: 22px; }
+            .splash-loader { width: 85%; }
+        }
+    </style>
+
+    <!-- স্প্ল্যাশ HTML -->
+    <div id="splashOverlay">
+        <div class="splash-deco d1"></div>
+        <div class="splash-deco d2"></div>
+        <div class="splash-deco d3"></div>
+        <div class="splash-wallpaper">
+            <div class="splash-logo-wrap">
+                <div class="logo-ring"></div>
+                <div class="splash-logo">🫂</div>
+            </div>
+            <div class="splash-title">INCOME<span>TAX</span></div>
+            <div class="splash-subtitle">✦ Multi Referral System ✦</div>
+            <div class="splash-divider"></div>
+            <div class="splash-tagline">
+                <strong>আয় বাড়ান</strong> · <strong>টিম তৈরি করুন</strong> · <strong>সাফল্য অর্জন করুন</strong>
+            </div>
+            <div class="splash-loader">
+                <div class="bar-bg">
+                    <div class="bar-fill" id="splashFill"></div>
+                </div>
+                <div class="bar-dots" id="splashDots">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="loader-text">
+                    <span id="splashStatus">প্রস্তুত হচ্ছে...</span>
+                    <span class="loader-percent" id="splashPercent">0%</span>
+                </div>
+            </div>
+            <div class="splash-footer">
+                <span>✦ v1.0.0 ✦</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const overlay = document.getElementById('splashOverlay');
+            const fill = document.getElementById('splashFill');
+            const percent = document.getElementById('splashPercent');
+            const status = document.getElementById('splashStatus');
+            const dots = document.querySelectorAll('#splashDots span');
+
+            const statusMessages = [
+                'সিস্টেম চেক করা হচ্ছে...',
+                'ডেটা লোড হচ্ছে...',
+                'সার্ভার সংযোগ...',
+                'অ্যাকাউন্ট যাচাই...',
+                'আপনার জন্য প্রস্তুত!'
+            ];
+
+            let progress = 0;
+            const duration = 5000;
+            const interval = 50;
+            const step = (100 / (duration / interval));
+
+            function updateDots(pct) {
+                const activeCount = Math.floor((pct / 100) * dots.length);
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i < activeCount);
+                });
+            }
+
+            const timer = setInterval(() => {
+                progress = Math.min(progress + step, 100);
+                fill.style.width = progress + '%';
+                percent.textContent = Math.round(progress) + '%';
+                updateDots(progress);
+
+                const idx = Math.min(Math.floor((progress / 100) * statusMessages.length), statusMessages.length - 1);
+                status.textContent = statusMessages[idx] || statusMessages[0];
+
+                if (progress >= 100) {
+                    clearInterval(timer);
+                    status.textContent = '✅ প্রস্তুত!';
+                    setTimeout(() => {
+                        overlay.classList.add('hidden');
+                        setTimeout(() => {
+                            overlay.style.display = 'none';
+                        }, 800);
+                    }, 400);
+                }
+            }, interval);
+        })();
+    </script>
+
 </head>
 
 <body>
 
+    <!-- ===== APP CONTAINER ===== -->
     <div class="app-container" id="appRoot">
 
         <!-- ===== AUTHENTICATION ===== -->
@@ -1302,8 +1804,18 @@
                             style="padding-left:46px;" />
                         <button type="button" class="toggle-pass" data-target="regConfirmPassword">👁️</button>
                     </div>
-                    <div class="input-group"><span class="input-icon">🔗</span><input type="text" id="regReferralCode"
-                            placeholder="রেফার কোড (যদি থাকে)" /></div>
+                    
+                    <!-- ===== রেফার কোড বাধ্যতামূলক ===== -->
+                    <div class="input-group">
+                        <span class="input-icon">🔗</span>
+                        <input type="text" id="regReferralCode" 
+                               placeholder="রেফার কোড (বাধ্যতামূলক)" 
+                               required />
+                    </div>
+                    <div class="ref-code-hint">
+                        ⚠️ রেফার কোড দেওয়া বাধ্যতামূলক। কারও কোড না থাকলে <strong>INCOME</strong> লিখুন।
+                    </div>
+                    
                     <button id="registerBtn" class="auth-btn">✅ রেজিস্ট্রেশন</button>
                     <div class="auth-toggle">ইতিমধ্যে অ্যাকাউন্ট আছে? <a id="gotoLoginBtn">লগইন করুন</a></div>
                 </div>
@@ -1394,229 +1906,16 @@
                         <button id="quickUpgrade" class="btn-primary">🚀 প্রো লেভেল আনলক করুন</button>
                     </div>
 
-       
-<!-- Fixed Download APK Button -->
-<a id="downloadBtn"
-   href="https://income-tax11.github.io/apk/releases/latest/download/INCOME.TAX.apk"
-   target="_blank">
-   📥 Download Latest APK
-</a>
-
-<style>
-#downloadBtn{
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 99999;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 92%;
-    max-width: 420px;
-    height: 52px;
-
-    background: linear-gradient(135deg,#28a745,#00c853);
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 14px;
-
-    box-shadow: 0 6px 18px rgba(0,0,0,.35);
-    transition: .3s;
-}
-
-#downloadBtn:hover{
-    transform: translateX(-50%) scale(1.03);
-    box-shadow: 0 8px 22px rgba(0,0,0,.45);
-}
-
-body{
-    padding-top:80px;
-}
-</style>
-
-
-<!-- Telegram Support Button - Isolated -->
-<style>
-/* ইউনিক ক্লাস ব্যবহার করা হয়েছে যেন অন্য কোনো বাটনের সাথে কনফ্লিক্ট না হয় */
-.telegram-support-wrapper-2026 {
-    position: fixed !important;
-    right: 12px !important;
-    bottom: 150px !important;
-    z-index: 9999 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 6px !important;
-    text-decoration: none !important;
-    pointer-events: auto !important;
-}
-
-.telegram-support-text-2026 {
-    color: #229ED9 !important;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-    font-size: 13px !important;
-    font-weight: 700 !important;
-    background: rgba(255, 255, 255, 0.95) !important;
-    padding: 4px 12px !important;
-    border-radius: 20px !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
-    letter-spacing: 0.3px !important;
-    text-transform: uppercase !important;
-    pointer-events: none !important;
-    user-select: none !important;
-}
-
-.telegram-btn-2026 {
-    width: 52px !important;
-    height: 52px !important;
-    background: #229ED9 !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: 0 4px 12px rgba(34,158,217,.45) !important;
-    transition: all .25s ease !important;
-    border: none !important;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-}
-
-.telegram-btn-2026:hover {
-    transform: scale(1.08) !important;
-    box-shadow: 0 6px 18px rgba(34,158,217,.65) !important;
-}
-
-.telegram-btn-2026 img {
-    width: 28px !important;
-    height: 28px !important;
-    display: block !important;
-    pointer-events: none !important;
-}
-
-/* নিশ্চিত করা যে এই বাটন অন্য কোনো এলিমেন্টকে প্রভাবিত করবে না */
-.telegram-support-wrapper-2026 * {
-    box-sizing: border-box !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-</style>
-
-<a href="https://t.me/incometax_team"
-   target="_blank"
-   class="telegram-support-wrapper-2026"
-   title="Support - Join Telegram"
-   style="position:fixed;right:12px;bottom:150px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;">
-    
-    <span class="telegram-support-text-2026" style="color:#229ED9;font-family:'Segoe UI',sans-serif;font-size:13px;font-weight:700;background:rgba(255,255,255,0.95);padding:4px 12px;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,0.12);letter-spacing:0.3px;text-transform:uppercase;user-select:none;">সাপোর্ট</span>
-    
-    <div class="telegram-btn-2026" style="width:52px;height:52px;background:#229ED9;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(34,158,217,.45);transition:all .25s ease;border:none;cursor:pointer;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
-             alt="Telegram Support"
-             style="width:28px;height:28px;display:block;pointer-events:none;">
-    </div>
-</a>
-
-
-
-<!-- ===========================
- Premium Floating Update Button
-=========================== -->
-
-<style>
-#updateBtn{
-    position:fixed;
-    top:75px;
-    right:12px;
-    z-index:999999;
-
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    background:linear-gradient(135deg,#00C853,#00E676);
-    color:#fff;
-    text-decoration:none;
-
-    padding:10px 16px;
-    border-radius:50px;
-
-    font-family:Arial,sans-serif;
-    font-size:14px;
-    font-weight:bold;
-
-    box-shadow:0 6px 18px rgba(0,0,0,.25);
-
-    animation:pulse 1.8s infinite;
-    transition:.25s;
-}
-
-#updateBtn:hover{
-    transform:scale(1.05);
-}
-
-#updateBtn svg{
-    width:20px;
-    height:20px;
-    fill:#fff;
-}
-
-@keyframes pulse{
-
-0%{
-box-shadow:0 0 0 0 rgba(0,200,83,.7);
-}
-
-70%{
-box-shadow:0 0 0 14px rgba(0,200,83,0);
-}
-
-100%{
-box-shadow:0 0 0 0 rgba(0,200,83,0);
-}
-
-}
-
-@media(max-width:600px){
-
-#updateBtn{
-top:70px;
-right:10px;
-padding:8px 14px;
-font-size:13px;
-}
-
-#updateBtn svg{
-width:18px;
-height:18px;
-}
-
-}
-</style>
-
-<a id="updateBtn"
-href="https://github.com/income-tax11/apk/releases/latest/download/INCOME.TAX.apk"
-target="_blank">
-
-<svg viewBox="0 0 24 24">
-<path d="M5 20h14v-2H5v2zm7-18v10.17l3.59-3.58L17 10l-5 5-5-5 1.41-1.41L11 12.17V2h1z"/>
-</svg>
-
-<span>⬇ New Update</span>
-
-</a>
-
-
-
-
-
-
-
-
+                    <!-- Telegram Support Button -->
+                    <a href="https://t.me/incometax_team" target="_blank" 
+                       style="display:block;text-decoration:none;margin:0 0 18px 0;">
+                        <button class="telegram-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                            <span>টেলিগ্রামে জয়েন করুন</span>
+                        </button>
+                    </a>
 
                     <div class="card">
                         <div class="card-title">🎁 সিলভার বোনাস</div>
@@ -1631,20 +1930,6 @@ target="_blank">
                         </div>
                         <button id="viewAllNotifBtn" class="btn-sm" style="margin-top:12px; width:100%; padding:10px;">📨 সব
                             নোটিফিকেশন দেখুন</button>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-title">📱 টেলিগ্রাম চ্যানেল</div>
-                        <p class="text-muted">সরাসরি যোগাযোগ ও আপডেট পেতে আমাদের টেলিগ্রাম চ্যানেলে জয়েন করুন</p>
-                        <a href="https://t.me/incometax_team" target="_blank" rel="noopener noreferrer"
-                            style="text-decoration: none; display: block; margin-top: 12px;">
-                            <button class="telegram-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
-                                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                                </svg>
-                                <span>টেলিগ্রামে জয়েন করুন</span>
-                            </button>
-                        </a>
                     </div>
                 </div>
 
@@ -1725,7 +2010,7 @@ target="_blank">
                     </div>
                 </div>
 
-                <!-- Referral -->
+                <!-- ===== REFERRAL PANEL (সোশ্যাল শেয়ার সহ) ===== -->
                 <div id="referPanel" class="panel">
                     <div class="card">
                         <div class="card-title">🔗 রেফারেল প্রোগ্রাম (৩ লেভেল)</div>
@@ -1744,8 +2029,71 @@ target="_blank">
                             <div><div class="stat-num" id="refCountNum">0</div><div class="stat-label">মোট রেফারেল</div></div>
                             <div><div class="stat-num" id="refEarnNum">0</div><div class="stat-label">মোট আয় (৳)</div></div>
                         </div>
-                        <div class="refer-link-box"><a id="referLinkAnchor" href="#" target="_blank">লিংক</a><button
-                                id="copyRefBtn" class="btn-sm">📋 কপি</button></div>
+
+                        <!-- ===== রেফার লিংক ও কোড ===== -->
+                        <div class="ref-link-code-box">
+                            <div class="ref-row">
+                                <span class="ref-label">🔗 লিংক:</span>
+                                <span class="ref-value" id="referLinkDisplay" onclick="window.open(this.textContent,'_blank')">লোড হচ্ছে...</span>
+                                <button class="copy-btn link-copy" id="copyRefLinkBtn">📋 কপি</button>
+                            </div>
+                            <div class="ref-row">
+                                <span class="ref-label">🔑 কোড:</span>
+                                <span class="ref-value code-value" id="referCodeDisplay">লোড হচ্ছে...</span>
+                                <button class="copy-btn code-copy" id="copyRefCodeBtn">📋 কপি</button>
+                            </div>
+                            <div class="ref-hint">
+                                ⚡ <strong>লিংক</strong> বা <strong>কোড</strong> শেয়ার করুন, প্রতিটি রেফারেল থেকে কমিশন পাবেন!
+                            </div>
+                        </div>
+
+                        <!-- ===== শেয়ার বাটন ===== -->
+                        <div style="margin: 16px 0 12px 0;">
+                            <div style="font-size:14px;font-weight:600;color:#0b1a2e;margin-bottom:10px;text-align:center;">
+                                📢 সোশ্যাল মিডিয়ায় শেয়ার করুন
+                            </div>
+                            <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+                                
+                                <button class="share-btn" data-platform="facebook" 
+                                        style="background:#1877F2;color:#fff;border:none;padding:8px 14px;border-radius:40px;font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:0.2s;font-family:inherit;">
+                                    <span style="font-size:16px;">📘</span> Facebook
+                                </button>
+
+                                <button class="share-btn" data-platform="messenger" 
+                                        style="background:#00B2FF;color:#fff;border:none;padding:8px 14px;border-radius:40px;font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:0.2s;font-family:inherit;">
+                                    <span style="font-size:16px;">💬</span> Messenger
+                                </button>
+
+                                <button class="share-btn" data-platform="whatsapp" 
+                                        style="background:#25D366;color:#fff;border:none;padding:8px 14px;border-radius:40px;font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:0.2s;font-family:inherit;">
+                                    <span style="font-size:16px;">📱</span> WhatsApp
+                                </button>
+
+                                <button class="share-btn" data-platform="telegram" 
+                                        style="background:#0088cc;color:#fff;border:none;padding:8px 14px;border-radius:40px;font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:0.2s;font-family:inherit;">
+                                    <span style="font-size:16px;">✈️</span> Telegram
+                                </button>
+
+                                <button class="share-btn" data-platform="tiktok" 
+                                        style="background:#000000;color:#fff;border:none;padding:8px 14px;border-radius:40px;font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:0.2s;font-family:inherit;">
+                                    <span style="font-size:16px;">🎵</span> TikTok
+                                </button>
+
+                                <button class="share-btn" data-platform="email" 
+                                        style="background:#EA4335;color:#fff;border:none;padding:8px 14px;border-radius:40px;font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:0.2s;font-family:inherit;">
+                                    <span style="font-size:16px;">📧</span> Email
+                                </button>
+
+                                <button class="share-btn" id="copyRefLinkBtn2" 
+                                        style="background:#0b1a2e;color:#fff;border:none;padding:8px 14px;border-radius:40px;font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:0.2s;font-family:inherit;">
+                                    <span style="font-size:16px;">📋</span> কপি লিংক
+                                </button>
+
+                            </div>
+                            <div style="font-size:11px;color:#94a3b8;text-align:center;margin-top:8px;">
+                                💡 বন্ধুদের আমন্ত্রণ জানান এবং কমিশন উপার্জন করুন!
+                            </div>
+                        </div>
 
                         <div class="card-title" style="margin-top:12px;font-size:15px;">💰 রেফারেল বোনাস হিস্টোরি</div>
                         <div id="referralBonusHistory" style="max-height:280px;overflow-y:auto;"></div>
@@ -1828,7 +2176,7 @@ target="_blank">
         </div>
     </div>
 
-    <!-- ===== ভাসমান রুলস বাটন ===== -->
+    <!-- ===== রুলস বাটন ===== -->
     <button id="rulesFloatBtn" class="rules-float-btn">
         <span>📜</span> রুলস
     </button>
@@ -1981,6 +2329,9 @@ target="_blank">
     <!-- টোস্ট মেসেজ -->
     <div id="toastGlobal" class="toast-global"></div>
 
+    <!-- ================================================================ -->
+    <!--  JAVASCRIPT                                                     -->
+    <!-- ================================================================ -->
     <script>
         // ================================================================
         //  FIREBASE CONFIG
@@ -2131,330 +2482,244 @@ target="_blank">
             return 'REF' + prefix + Math.random().toString(36).substring(2, 6).toUpperCase();
         }
 
+      // ================================================================
+//  ERROR MESSAGE HELPER - সম্পূর্ণ বাংলা
+// ================================================================
+function getErrorMessage(error) {
+    const errors = {
+        // Firebase Authentication Errors
+        'auth/user-not-found': 'এই ইমেইল বা ইউজারনেমে কোনো অ্যাকাউন্ট নেই। অনুগ্রহ করে সঠিক তথ্য দিন।',
+        'auth/wrong-password': 'পাসওয়ার্ডটি ভুল। অনুগ্রহ করে সঠিক পাসওয়ার্ড দিন।',
+        'auth/email-already-in-use': 'এই ইমেইলটি ইতিমধ্যে অন্য একটি অ্যাকাউন্টে ব্যবহার করা হয়েছে। অন্য ইমেইল ব্যবহার করুন।',
+        'auth/weak-password': 'পাসওয়ার্ডটি খুব সহজ। কমপক্ষে ৬ অক্ষরের একটি শক্তিশালী পাসওয়ার্ড দিন।',
+        'auth/invalid-email': 'ইমেইল ঠিকানাটি সঠিক নয়। সঠিক ইমেইল ফরম্যাট ব্যবহার করুন (যেমন: example@email.com)।',
+        'auth/user-disabled': 'এই অ্যাকাউন্টটি বন্ধ করে দেওয়া হয়েছে। প্রশাসকের সাথে যোগাযোগ করুন।',
+        'auth/too-many-requests': 'অনেকবার চেষ্টা করার কারণে অ্যাকাউন্টটি সাময়িকভাবে ব্লক করা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।',
+        'auth/network-request-failed': 'ইন্টারনেট সংযোগ নেই। আপনার ইন্টারনেট সংযোগ চেক করে আবার চেষ্টা করুন।',
+        'auth/requires-recent-login': 'নিরাপত্তার জন্য আবার লগইন করুন। পুরনো সেশন অকার্যকর হয়েছে।',
+        'auth/account-exists-with-different-credential': 'এই ইমেইলে ইতিমধ্যে অন্য একটি অ্যাকাউন্ট আছে। অন্য উপায়ে লগইন করুন।',
+        'auth/popup-closed-by-user': 'লগইন উইন্ডো বন্ধ করে দেওয়া হয়েছে। আবার চেষ্টা করুন।',
+        'auth/cancelled-popup-request': 'লগইন অনুরোধ বাতিল করা হয়েছে। আবার চেষ্টা করুন।',
+        'auth/operation-not-allowed': 'এই লগইন পদ্ধতিটি বর্তমানে সক্রিয় নেই। প্রশাসকের সাথে যোগাযোগ করুন।',
+        
+        // Firestore Errors
+        'permission-denied': 'আপনার এই ডেটা অ্যাক্সেস করার অনুমতি নেই। প্রশাসকের সাথে যোগাযোগ করুন।',
+        'not-found': 'আপনার অনুরোধকৃত ডেটা পাওয়া যায়নি। ডেটা সঠিক কিনা চেক করুন।',
+        'unavailable': 'সার্ভার বর্তমানে সংযোগ প্রদান করতে পারছে না। কিছুক্ষণ পরে আবার চেষ্টা করুন।',
+        'already-exists': 'এই ডেটা ইতিমধ্যে সিস্টেমে বিদ্যমান। ডুপ্লিকেট ডেটা ব্যবহার করা যাবে না।',
+        'failed-precondition': 'অপারেশনটি সম্পূর্ণ করা সম্ভব হয়নি। আপনার ডেটা এবং নেটওয়ার্ক সংযোগ চেক করুন।',
+        'resource-exhausted': 'আপনি অনেকবার রিকোয়েস্ট করেছেন। কিছুক্ষণ অপেক্ষা করে আবার চেষ্টা করুন।',
+        'aborted': 'অপারেশনটি বাতিল করা হয়েছে। আবার চেষ্টা করুন।',
+        'out-of-range': 'আপনার দেওয়া মান সীমার বাইরে। সঠিক মান দিন।',
+        'unauthenticated': 'আপনি লগইন করেননি। লগইন করে আবার চেষ্টা করুন।',
+        'internal': 'সার্ভারে অভ্যন্তরীণ সমস্যা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।',
+        
+        // Custom Errors
+        'invalid-amount': 'আপনি যে পরিমাণ টাকা দিয়েছেন তা সঠিক নয়। সঠিক পরিমাণ দিন।',
+        'insufficient-balance': 'আপনার অ্যাকাউন্টে পর্যাপ্ত ব্যালেন্স নেই। প্রয়োজনীয় ব্যালেন্স নিশ্চিত করুন।',
+        'min-deposit': 'ডিপোজিটের ন্যূনতম পরিমাণ ৫০০ টাকা।',
+        'min-withdraw': 'উইথড্রের ন্যূনতম পরিমাণ ৫০০ টাকা।',
+        'invalid-phone': 'আপনার ফোন নাম্বারটি সঠিক নয়। সঠিক ১১ ডিজিটের নাম্বার দিন।',
+        'invalid-transaction-id': 'ট্রানজেকশন আইডিটি সঠিক নয়। সঠিক ট্রানজেকশন আইডি দিন।',
+        'level-locked': 'এই লেভেলটি আনলক করতে আগের লেভেলটি সম্পূর্ণ করুন।',
+        'silver-bonus-taken': 'আপনি ইতিমধ্যে সিলভার বোনাস নিয়ে নিয়েছেন।',
+        'referral-code-required': 'রেফারেল কোড দেওয়া বাধ্যতামূলক। দয়া করে একটি বৈধ রেফারেল কোড দিন।',
+        'invalid-referral-code': 'আপনার দেওয়া রেফারেল কোডটি সঠিক নয়। সঠিক কোড দিন অথবা INCOME লিখুন।',
+        'username-exists': 'এই ইউজারনেমটি ইতিমধ্যে কেউ নিয়ে নিয়েছেন। অন্য একটি ইউজারনেম চেষ্টা করুন।',
+        'email-exists': 'এই ইমেইলটি ইতিমধ্যে নিবন্ধিত। অন্য ইমেইল ব্যবহার করুন অথবা লগইন করুন।',
+        'password-mismatch': 'পাসওয়ার্ড এবং কনফার্ম পাসওয়ার্ড মিলছে না। সঠিকভাবে পাসওয়ার্ড দিন।',
+        'all-fields-required': 'সব তথ্য পূরণ করা আবশ্যক। দয়া করে সব ফিল্ড পূরণ করুন।',
+        
+        // Payment Related
+        'payment-failed': 'পেমেন্ট প্রক্রিয়া সম্পূর্ণ হয়নি। আবার চেষ্টা করুন অথবা অন্য পদ্ধতি ব্যবহার করুন।',
+        'withdraw-failed': 'উইথড্র প্রক্রিয়া সম্পূর্ণ হয়নি। আপনার ব্যালেন্স ও তথ্য চেক করুন।',
+        'deposit-failed': 'ডিপোজিট প্রক্রিয়া সম্পূর্ণ হয়নি। ট্রানজেকশন আইডি ও তথ্য চেক করুন।',
+        
+        // Network & General
+        'timeout': 'সার্ভারে সংযোগ স্থাপনে সময় লেগেছে। আপনার ইন্টারনেট সংযোগ চেক করে আবার চেষ্টা করুন।',
+        'unknown': 'অজানা একটি সমস্যা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।'
+    };
+    
+    // কাস্টম এরর মেসেজ চেক
+    if (error.message && errors[error.message]) {
+        return errors[error.message];
+    }
+    
+    // Firebase এরর কোড চেক
+    if (error.code && errors[error.code]) {
+        return errors[error.code];
+    }
+    
+    // যদি কোনো এরর মেসেজ না পাওয়া যায়
+    return error.message || 'দুঃখিত, একটি অজানা সমস্যা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।';
+}
+
         // ================================================================
-        //  ERROR MESSAGE HELPER
+        //  ROUTINE: handleRefreshLogout
         // ================================================================
-        function getErrorMessage(error) {
-            const errors = {
-                'permission-denied': 'আপনার ডেটা অ্যাক্সেস করার অনুমতি নেই।',
-                'not-found': 'ডেটা পাওয়া যায়নি।',
-                'unavailable': 'সার্ভার সংযোগ নেই। ইন্টারনেট চেক করুন।',
-                'already-exists': 'এই ডেটা ইতিমধ্যে আছে।',
-                'failed-precondition': 'অপারেশন সফল হয়নি। আবার চেষ্টা করুন।',
-                'auth/user-not-found': 'ইউজার পাওয়া যায়নি',
-                'auth/wrong-password': 'ভুল পাসওয়ার্ড',
-                'auth/email-already-in-use': 'এই ইমেইল ইতিমধ্যে ব্যবহার করা হয়েছে',
-                'auth/weak-password': 'পাসওয়ার্ড খুব সহজ। ৬ অক্ষরের বেশি দিন।'
-            };
-            return errors[error.code] || error.message || 'অজানা সমস্যা';
+        function handleRefreshLogout() {
+            const btn = document.getElementById('refreshLogoutBtn');
+            btn.classList.add('refreshing');
+            if (confirm('আপনি কি লগআউট করতে চান?')) {
+                showToast('⏳ লগআউট হচ্ছে...', 'info');
+                setTimeout(() => {
+                    if (typeof logout === 'function') {
+                        logout();
+                    } else {
+                        firebase.auth().signOut().then(() => { window.location.reload(); })
+                            .catch(() => { window.location.reload(); });
+                    }
+                }, 800);
+            } else {
+                btn.classList.remove('refreshing');
+                showToast('বাতিল করা হয়েছে', 'info');
+            }
         }
 
         // ================================================================
         //  AUTHENTICATION FUNCTIONS
         // ================================================================
         async function register() {
-    const name = document.getElementById('regName').value.trim();
-    const email = document.getElementById('regEmail').value.trim();
-    const phone = document.getElementById('regPhone').value.trim();
-    const pass = document.getElementById('regPassword').value;
-    const confirm = document.getElementById('regConfirmPassword').value;
-    let refCode = document.getElementById('regReferralCode').value.trim().toUpperCase();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const pass = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirmPassword').value;
+            let refCode = document.getElementById('regReferralCode').value.trim().toUpperCase();
 
-    // ইনপুট ভ্যালিডেশন
-    if (!name || !email || !phone || !pass) {
-        showToast('সব তথ্য দিন', 'error');
-        return;
-    }
-    if (pass !== confirm) {
-        showToast('পাসওয়ার্ড মিলছে না', 'error');
-        return;
-    }
-    if (pass.length < 6) {
-        showToast('পাসওয়ার্ড ৬ অক্ষরের বেশি দিন', 'error');
-        return;
-    }
-
-    const btn = document.getElementById('registerBtn');
-    btn.disabled = true;
-    btn.textContent = '⏳ প্রক্রিয়াকরণ...';
-
-    try {
-        // ============================================================
-        // স্টেপ 1: ইউজারনেম চেক করুন
-        // ============================================================
-        console.log('🔍 ইউজারনেম চেক:', name);
-        const nameCheck = await db.collection('users').doc(name).get();
-        if (nameCheck.exists) {
-            showToast('এই ইউজার নাম ইতিমধ্যে নেওয়া হয়েছে', 'error');
-            btn.disabled = false;
-            btn.textContent = '✅ রেজিস্ট্রেশন';
-            return;
-        }
-
-        // ============================================================
-        // স্টেপ 2: Firebase Authentication তৈরি করুন
-        // ============================================================
-        console.log('📝 Authentication তৈরি করা হচ্ছে...');
-        const cred = await auth.createUserWithEmailAndPassword(email, pass);
-        const uid = cred.user.uid;
-        console.log('✅ Authentication তৈরি হয়েছে. UID:', uid);
-
-        // ============================================================
-        // স্টেপ 3: রেফারেল কোড চেক করুন
-        // ============================================================
-        let referredBy = null;
-        if (refCode) {
-            console.log('🔍 রেফারেল কোড চেক:', refCode);
-            const snap = await db.collection('users')
-                .where('referralCode', '==', refCode)
-                .limit(1)
-                .get();
-
-            if (!snap.empty) {
-                const refDoc = snap.docs[0];
-                referredBy = refDoc.id;
-                console.log('✅ রেফারেল পাওয়া গেছে:', referredBy);
-            } else {
-                console.log('⚠️ রেফারেল কোড পাওয়া যায়নি');
+            if (!name || !email || !phone || !pass) {
+                showToast('সব তথ্য দিন', 'error');
+                return;
             }
-        }
 
-        // ============================================================
-        // স্টেপ 4: ইউজার ডেটা তৈরি করুন
-        // ============================================================
-        const newUser = {
-            balance: 0,
-            premiumLevel: 0,
-            silverBonusTaken: false,
-            referralCode: generateReferralCode(name),
-            referredBy: referredBy,
-            referralEarnings: 0,
-            totalReferrals: 0,
-            profile: {
-                name: name,
-                email: email,
-                phone: phone,
-                address: ''
-            },
-            transactions: [],
-            depositRequests: [],
-            withdrawRequests: [],
-            uid: uid,
-            username: name,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        };
+            if (!refCode) {
+                showToast('⚠️ রেফার কোড দিতে হবে!', 'error');
+                const input = document.getElementById('regReferralCode');
+                input.classList.add('error');
+                return;
+            }
+            document.getElementById('regReferralCode').classList.remove('error');
 
-        console.log('📝 ইউজার ডেটা তৈরি:', newUser);
+            if (pass !== confirm) {
+                showToast('পাসওয়ার্ড মিলছে না', 'error');
+                return;
+            }
+            if (pass.length < 6) {
+                showToast('পাসওয়ার্ড ৬ অক্ষরের বেশি দিন', 'error');
+                return;
+            }
 
-        // ============================================================
-        // স্টেপ 5: Firestore-এ ডকুমেন্ট তৈরি (Retry মেকানিজম সহ)
-        // ============================================================
-        let docCreated = false;
-        let retryCount = 0;
-        const maxRetries = 3;
+            const btn = document.getElementById('registerBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ প্রক্রিয়াকরণ...';
 
-        while (!docCreated && retryCount < maxRetries) {
             try {
-                console.log(`💾 Firestore-এ ডকুমেন্ট সেভ (Attempt ${retryCount + 1})...`);
-                await db.collection('users').doc(name).set(newUser);
-                console.log('✅ ডকুমেন্ট সেভ হয়েছে!');
-                docCreated = true;
-            } catch (firestoreError) {
-                retryCount++;
-                console.error(`❌ Firestore Error (Attempt ${retryCount}):`, firestoreError);
-                
-                if (retryCount === maxRetries) {
-                    throw firestoreError;
+                const nameCheck = await db.collection('users').doc(name).get();
+                if (nameCheck.exists) {
+                    showToast('এই ইউজার নাম ইতিমধ্যে নেওয়া হয়েছে', 'error');
+                    btn.disabled = false;
+                    btn.textContent = '✅ রেজিস্ট্রেশন';
+                    return;
                 }
-                
-                // 1 সেকেন্ড অপেক্ষা করে আবার চেষ্টা
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-        }
 
-        if (!docCreated) {
-            throw new Error('ডকুমেন্ট তৈরি করতে ব্যর্থ হয়েছে');
-        }
+                let referredBy = null;
+                let refDoc = null;
 
-        // ============================================================
-        // স্টেপ 6: ডকুমেন্ট ভেরিফাই (Retry সহ)
-        // ============================================================
-        let docVerified = false;
-        let verifyRetry = 0;
-        const maxVerifyRetries = 5;
+                if (refCode !== 'INCOME') {
+                    const refSnap = await db.collection('users')
+                        .where('referralCode', '==', refCode)
+                        .limit(1)
+                        .get();
 
-        while (!docVerified && verifyRetry < maxVerifyRetries) {
-            try {
-                console.log(`🔍 ডকুমেন্ট ভেরিফাই (Attempt ${verifyRetry + 1})...`);
-                const verifyDoc = await db.collection('users').doc(name).get();
-                
-                if (verifyDoc.exists) {
-                    console.log('✅ ডকুমেন্ট সফলভাবে সংরক্ষিত হয়েছে!');
-                    console.log('📄 ডকুমেন্ট ডেটা:', verifyDoc.data());
-                    docVerified = true;
+                    if (!refSnap.empty) {
+                        refDoc = refSnap.docs[0];
+                        referredBy = refDoc.id;
+                    } else {
+                        showToast('❌ রেফার কোডটি সঠিক নয়!', 'error');
+                        document.getElementById('regReferralCode').classList.add('error');
+                        btn.disabled = false;
+                        btn.textContent = '✅ রেজিস্ট্রেশন';
+                        return;
+                    }
                 } else {
-                    verifyRetry++;
-                    console.log(`⏳ ডকুমেন্ট এখনও তৈরি হয়নি, অপেক্ষা করছি... (${verifyRetry}/${maxVerifyRetries})`);
-                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    referredBy = 'admin_income';
                 }
-            } catch (verifyError) {
-                verifyRetry++;
-                console.error(`❌ ভেরিফাই Error (Attempt ${verifyRetry}):`, verifyError);
-                await new Promise(resolve => setTimeout(resolve, 1500));
-            }
-        }
 
-        if (!docVerified) {
-            console.error('❌ ডকুমেন্ট ভেরিফাই করা সম্ভব হয়নি!');
-            
-            // Authentication ইউজার ডিলিট করুন
-            if (auth.currentUser) {
-                try {
-                    await auth.currentUser.delete();
-                    console.log('🗑️ Authentication ইউজার ডিলিট করা হয়েছে');
-                } catch (e) {
-                    console.error('Authentication ইউজার ডিলিট করতে সমস্যা:', e);
-                }
-            }
-            
-            showToast('ডকুমেন্ট তৈরি হয়েছে কিন্তু পড়া সম্ভব হচ্ছে না! আবার চেষ্টা করুন।', 'error');
-            btn.disabled = false;
-            btn.textContent = '✅ রেজিস্ট্রেশন';
-            return;
-        }
+                const cred = await auth.createUserWithEmailAndPassword(email, pass);
+                const uid = cred.user.uid;
 
-        // ============================================================
-        // স্টেপ 7: রেফারেল কোড ডকুমেন্ট তৈরি করুন
-        // ============================================================
-        try {
-            await db.collection('referralCodes').doc(newUser.referralCode).set({
-                ownerUid: uid,
-                ownerName: name,
-                createdAt: new Date().toISOString()
-            });
-            console.log('✅ রেফারেল কোড সেভ হয়েছে');
-        } catch (err) {
-            console.error('রেফারেল কোড সেভ করতে সমস্যা:', err);
-        }
+                const newUser = {
+                    balance: 0,
+                    premiumLevel: 0,
+                    silverBonusTaken: false,
+                    referralCode: generateReferralCode(name),
+                    referredBy: referredBy || null,
+                    referralEarnings: 0,
+                    totalReferrals: 0,
+                    profile: {
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        address: ''
+                    },
+                    transactions: [],
+                    depositRequests: [],
+                    withdrawRequests: [],
+                    uid: uid,
+                    username: name,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
 
-        // ============================================================
-        // স্টেপ 8: রেফারেল ডেটা তৈরি করুন (যদি থাকে)
-        // ============================================================
-        if (referredBy) {
-            try {
-                // ১ম লাইন রেফারেল
-                await db.collection('referrals').add({
-                    referrer: referredBy,
-                    referee: name,
-                    refereeUid: uid,
-                    line: 1,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                await db.collection('users').doc(name).set(newUser);
+                await db.collection('referralCodes').doc(newUser.referralCode).set({
+                    ownerUid: uid,
+                    ownerName: name,
                     createdAt: new Date().toISOString()
                 });
-                console.log('✅ ১ম লাইন রেফারেল তৈরি হয়েছে');
 
-                // রেফারারের totalReferrals আপডেট করুন
-                const referrerDoc = await getUserDocRef(referredBy).get();
-                if (referrerDoc.exists) {
-                    const refData = referrerDoc.data();
-                    const currentTotal = refData.totalReferrals || 0;
-                    await getUserDocRef(referredBy).update({
-                        totalReferrals: currentTotal + 1
-                    });
-                    console.log(`✅ ${referredBy} এর totalReferrals আপডেট`);
-                }
-
-                // ২য় লাইন চেক
-                const referrerOfReferrer = await getUserDocRef(referredBy).get();
-                if (referrerOfReferrer.exists) {
-                    const refOfRefData = referrerOfReferrer.data();
-                    const secondLevelReferrer = refOfRefData.referredBy;
-                    
-                    if (secondLevelReferrer) {
+                if (referredBy && refCode !== 'INCOME') {
+                    try {
                         await db.collection('referrals').add({
-                            referrer: secondLevelReferrer,
+                            referrer: referredBy,
                             referee: name,
                             refereeUid: uid,
-                            line: 2,
+                            line: 1,
                             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                             createdAt: new Date().toISOString()
                         });
-                        console.log('✅ ২য় লাইন রেফারেল তৈরি হয়েছে');
-
-                        // ৩য় লাইন চেক
-                        const secondLevelUser = await getUserDocRef(secondLevelReferrer).get();
-                        if (secondLevelUser.exists) {
-                            const secondLevelData = secondLevelUser.data();
-                            const thirdLevelReferrer = secondLevelData.referredBy;
-                            
-                            if (thirdLevelReferrer) {
-                                await db.collection('referrals').add({
-                                    referrer: thirdLevelReferrer,
-                                    referee: name,
-                                    refereeUid: uid,
-                                    line: 3,
-                                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                                    createdAt: new Date().toISOString()
-                                });
-                                console.log('✅ ৩য় লাইন রেফারেল তৈরি হয়েছে');
-                            }
-                        }
+                        await db.collection('users').doc(referredBy).update({
+                            totalReferrals: firebase.firestore.FieldValue.increment(1)
+                        });
+                    } catch (err) {
+                        console.error('রেফারেল ডেটা তৈরি করতে সমস্যা:', err);
                     }
                 }
+
+                Object.assign(user, newUser);
+                currentUid = uid;
+                currentUsername = name;
+
+                document.getElementById('authContainer').classList.add('hidden');
+                document.getElementById('mainApp').classList.add('active');
+                document.getElementById('mainApp').style.display = 'flex';
+
+                await loadConfig();
+                await updateUI();
+                showDashboard();
+
+                showToast('🎉 রেজিস্ট্রেশন সফল!', 'success');
+
             } catch (err) {
-                console.error('রেফারেল ডেটা তৈরি করতে সমস্যা:', err);
+                console.error('রেজিস্ট্রেশন Error:', err);
+                if (auth.currentUser) {
+                    try { await auth.currentUser.delete(); } catch (e) {}
+                }
+                showToast(getErrorMessage(err), 'error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '✅ রেজিস্ট্রেশন';
             }
         }
-
-        // ============================================================
-        // স্টেপ 9: লোকাল ডেটা সেট করুন
-        // ============================================================
-        Object.assign(user, newUser);
-        currentUid = uid;
-        currentUsername = name;
-
-        // ============================================================
-        // স্টেপ 10: UI আপডেট করুন
-        // ============================================================
-        showToast('🎉 রেজিস্ট্রেশন সফল!', 'success');
-        document.getElementById('authContainer').classList.add('hidden');
-        document.getElementById('mainApp').classList.add('active');
-        document.getElementById('mainApp').style.display = 'flex';
-
-        await loadConfig();
-        await updateUI();
-        showDashboard();
-
-    } catch (err) {
-        console.error('❌ রেজিস্ট্রেশন Error:', err);
-        console.error('📋 Error Code:', err.code);
-        console.error('📝 Error Message:', err.message);
-        
-        // Authentication ইউজার ডিলিট করুন (যদি Firestore ফেইল করে)
-        if (auth.currentUser) {
-            try {
-                await auth.currentUser.delete();
-                console.log('🗑️ Authentication ইউজার ডিলিট করা হয়েছে');
-            } catch (e) {
-                console.error('Authentication ইউজার ডিলিট করতে সমস্যা:', e);
-            }
-        }
-        
-        // ইউজারকে Error দেখান
-        if (err.code === 'auth/email-already-in-use') {
-            showToast('এই ইমেইল ইতিমধ্যে ব্যবহার করা হয়েছে', 'error');
-        } else if (err.code === 'auth/weak-password') {
-            showToast('পাসওয়ার্ড খুব সহজ। ৬ অক্ষরের বেশি দিন', 'error');
-        } else if (err.code === 'permission-denied') {
-            showToast('⚠️ Firestore permission denied! Rules চেক করুন', 'error');
-        } else {
-            showToast('রেজিস্ট্রেশন ব্যর্থ: ' + err.message, 'error');
-        }
-    } finally {
-        btn.disabled = false;
-        btn.textContent = '✅ রেজিস্ট্রেশন';
-    }
-}
 
         async function login() {
             const usernameOrEmail = document.getElementById('loginUsername').value.trim();
@@ -2786,248 +3051,63 @@ target="_blank">
             });
         }
 
-// ================================================================
-//  ডিবাগ ফাংশন - কমিশন প্রক্রিয়া ট্র্যাক করতে
-// ================================================================
-async function debugReferralCommission(userWhoUnlocked, unlockedLevel, cost) {
-    console.log('========== ডিবাগ স্টার্ট ==========');
-    console.log('1️⃣ ইউজার:', userWhoUnlocked);
-    console.log('2️⃣ লেভেল:', unlockedLevel);
-    console.log('3️⃣ খরচ:', cost);
-    console.log('4️⃣ বর্তমান ইউজার:', currentUsername);
-    
-    try {
-        // স্টেপ 1: রেফারেল চেইন চেক
-        console.log('🔍 স্টেপ 1: রেফারেল চেইন খুঁজছি...');
-        const chain = await getReferralChain(userWhoUnlocked, 3);
-        console.log('📊 রেফারেল চেইন:', chain);
-        
-        if (chain.length === 0) {
-            console.log('❌ কোনো রেফারেল পাওয়া যায়নি');
-            return;
-        }
-        
-        // স্টেপ 2: প্রতিটি রেফারারের জন্য চেক
-        for (let i = 0; i < chain.length; i++) {
-            const referrer = chain[i];
-            console.log(`\n🔹 স্টেপ 2.${i+1}: রেফারার চেক - ${referrer}`);
-            
-            // রেফারারের ডেটা পড়ুন
-            const refDoc = await db.collection('users').doc(referrer).get();
-            if (!refDoc.exists) {
-                console.log(`❌ ${referrer} এর ডকুমেন্ট নেই`);
-                continue;
-            }
-            
-            const refData = refDoc.data();
-            console.log(`📄 ${referrer} এর ডেটা:`, {
-                balance: refData.balance,
-                referralEarnings: refData.referralEarnings,
-                premiumLevel: refData.premiumLevel,
-                transactions: refData.transactions?.length || 0
-            });
-            
-            // স্টেপ 3: কমিশন ক্যালকুলেশন
-            console.log(`🔹 স্টেপ 3.${i+1}: কমিশন ক্যালকুলেশন`);
-            let commPercent = 0;
-            let lineName = '';
-            
-            if (i === 0) {
-                const lvl = refData.premiumLevel || 0;
-                commPercent = lvl === 0 ? BASE_COMMISSION : 
-                    (LEVEL_CONFIG.find(l => l.level === lvl)?.commission || BASE_COMMISSION);
-                lineName = '১ম';
-                console.log(`📊 ১ম লাইন: লেভেল ${lvl}, কমিশন ${commPercent}%`);
-            } else if (i === 1) {
-                commPercent = FIXED_COMMISSION.level2 || 5;
-                lineName = '২য়';
-                console.log(`📊 ২য় লাইন: কমিশন ${commPercent}%`);
-            } else if (i === 2) {
-                commPercent = FIXED_COMMISSION.level3 || 2;
-                lineName = '৩য়';
-                console.log(`📊 ৩য় লাইন: কমিশন ${commPercent}%`);
-            }
-            
-            if (commPercent === 0) {
-                console.log(`⚠️ কমিশন 0%`);
-                continue;
-            }
-            
-            const amount = (cost * commPercent) / 100;
-            console.log(`💰 কমিশন অ্যামাউন্ট: ${amount} টাকা`);
-            
-            if (amount <= 0) {
-                console.log(`⚠️ অ্যামাউন্ট ০ বা কম`);
-                continue;
-            }
-            
-            // স্টেপ 4: ডেটা আপডেট করার চেষ্টা
-            console.log(`🔹 স্টেপ 4.${i+1}: ডেটা আপডেট করার চেষ্টা`);
-            try {
-                const currentBalance = refData.balance || 0;
-                const currentEarnings = refData.referralEarnings || 0;
-                const currentTxs = refData.transactions || [];
-                
-                const newBalance = currentBalance + amount;
-                const newEarnings = currentEarnings + amount;
-                
-                const newTx = {
-                    type: `রেফারেল কমিশন (${lineName} লাইন)`,
-                    amount: amount,
-                    details: `${userWhoUnlocked} → লেভেল ${unlockedLevel} আনলক (${commPercent}%)`,
-                    date: new Date().toLocaleString('bn-BD')
-                };
-                
-                console.log(`📝 নতুন ডেটা:`, {
-                    oldBalance: currentBalance,
-                    newBalance: newBalance,
-                    oldEarnings: currentEarnings,
-                    newEarnings: newEarnings,
-                    newTx: newTx
-                });
-                
-                // Firestore আপডেট
-                await db.collection('users').doc(referrer).update({
-                    balance: newBalance,
-                    referralEarnings: newEarnings,
-                    transactions: firebase.firestore.FieldValue.arrayUnion(newTx)
-                });
-                
-                console.log(`✅ ${referrer} আপডেট সফল!`);
-                
-                // লোকাল ডেটা আপডেট
-                if (referrer === currentUsername) {
-                    user.balance = newBalance;
-                    user.referralEarnings = newEarnings;
-                    if (!user.transactions) user.transactions = [];
-                    user.transactions.push(newTx);
-                    console.log('✅ লোকাল ডেটা আপডেট হয়েছে');
-                }
-                
-            } catch (e) {
-                console.error(`❌ আপডেট করতে সমস্যা:`, e);
-                console.error(`❌ Error Code: ${e.code}`);
-                console.error(`❌ Error Message: ${e.message}`);
-                
-                if (e.code === 'permission-denied') {
-                    console.error('⚠️ PERMISSION DENIED! Firestore Rules চেক করুন');
-                }
-            }
-        }
-        
-        // স্টেপ 5: ফাইনাল রেজাল্ট
-        console.log('\n========== ডিবাগ শেষ ==========');
-        console.log('📊 ফাইনাল রেজাল্ট:');
-        console.log('- UI আপডেট করা হচ্ছে...');
-        await updateUI();
-        await countReferralLevels();
-        await loadReferralBonusHistory();
-        
-        // রেফারারের ডেটা আবার চেক করুন
-        if (chain.length > 0) {
-            const firstReferrer = chain[0];
-            const finalDoc = await db.collection('users').doc(firstReferrer).get();
-            if (finalDoc.exists) {
-                const finalData = finalDoc.data();
-                console.log(`📄 ${firstReferrer} এর ফাইনাল ডেটা:`, {
-                    balance: finalData.balance,
-                    referralEarnings: finalData.referralEarnings,
-                    transactions: finalData.transactions?.length || 0
-                });
-            }
-        }
-        
-    } catch (e) {
-        console.error('❌ ডিবাগ প্রক্রিয়ায় সমস্যা:', e);
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
         // ================================================================
-        //  REFERRAL FUNCTIONS - FIXED
+        //  REFERRAL FUNCTIONS
         // ================================================================
-
-        // 1. রেফারেল চেইন বের করার ফাংশন
         async function getReferralChain(username, depth = 3) {
-            console.log('🔍 রেফারেল চেইন খোঁজা হচ্ছে:', username);
             const chain = [];
             let current = username;
-            
+
             for (let i = 0; i < depth; i++) {
                 try {
-                    console.log(`📌 লেভেল ${i+1} খোঁজা হচ্ছে:`, current);
-                    
-                    // referrals collection থেকে referee দিয়ে খোঁজা
                     const refSnap = await db.collection('referrals')
                         .where('referee', '==', current)
                         .limit(1)
                         .get();
-                    
-                    console.log(`referee "${current}" এর রেজাল্ট:`, refSnap.size);
-                    
+
                     if (!refSnap.empty) {
                         const refData = refSnap.docs[0].data();
                         const referrer = refData.referrer;
-                        console.log(`✅ পাওয়া গেছে: ${current} → ${referrer}`);
-                        
                         if (referrer && referrer !== current) {
                             chain.push(referrer);
                             current = referrer;
                             continue;
                         }
                     }
-                    
-                    // user ডকুমেন্ট থেকে referredBy ফিল্ড চেক
-                    console.log(`🔄 ইউজার ডকুমেন্ট চেক: ${current}`);
+
                     const userDoc = await getUserDocRef(current).get();
                     if (userDoc.exists) {
                         const userData = userDoc.data();
                         const referredBy = userData.referredBy;
-                        console.log(`user.referredBy:`, referredBy);
-                        
                         if (referredBy && referredBy !== current) {
                             chain.push(referredBy);
                             current = referredBy;
                             continue;
                         }
                     }
-                    
-                    console.log(`❌ ${current} এর জন্য কোনো রেফারেল পাওয়া যায়নি`);
+
                     break;
-                    
                 } catch (e) {
-                    console.error(`❌ রেফারেল চেইন পেতে সমস্যা (লেভেল ${i+1}):`, e);
+                    console.error('রেফারেল চেইন পেতে সমস্যা:', e);
                     break;
                 }
             }
-            
-            console.log('📊 রেফারেল চেইন:', chain);
             return chain;
         }
 
-        // 2. রেফারেল কাউন্ট ফাংশন
         async function countReferralLevels() {
             if (!currentUsername) return;
             try {
                 const snap1 = await db.collection('referrals')
                     .where('referrer', '==', currentUsername)
                     .get();
-                
+
                 const line1Referees = [];
                 snap1.forEach(doc => {
                     const data = doc.data();
                     if (data.referee) line1Referees.push(data.referee);
                 });
-                
+
                 let line2Referees = [];
                 for (const ref of line1Referees) {
                     const snap2 = await db.collection('referrals')
@@ -3040,7 +3120,7 @@ async function debugReferralCommission(userWhoUnlocked, unlockedLevel, cost) {
                         }
                     });
                 }
-                
+
                 let line3Referees = [];
                 for (const ref of line2Referees) {
                     const snap3 = await db.collection('referrals')
@@ -3053,138 +3133,94 @@ async function debugReferralCommission(userWhoUnlocked, unlockedLevel, cost) {
                         }
                     });
                 }
-                
+
                 document.getElementById('line1Count').textContent = line1Referees.length;
                 document.getElementById('line2Count').textContent = line2Referees.length;
                 document.getElementById('line3Count').textContent = line3Referees.length;
                 document.getElementById('globalRefCount').textContent = line1Referees.length;
                 document.getElementById('refCountNum').textContent = line1Referees.length;
-                
+
                 if (user.totalReferrals !== line1Referees.length) {
                     user.totalReferrals = line1Referees.length;
                     await saveCurrentUser();
                 }
-                
-                console.log('📊 রেফারেল কাউন্ট:', {
-                    line1: line1Referees.length,
-                    line2: line2Referees.length,
-                    line3: line3Referees.length
-                });
-                
             } catch (error) {
                 console.error('রেফারেল কাউন্টে সমস্যা:', error);
             }
         }
 
-        // 3. কমিশন দেওয়ার ফাংশন
         async function giveReferralCommission(userWhoUnlocked, unlockedLevel, cost) {
-    if (!userWhoUnlocked || !currentUsername) {
-        console.log('❌ ইউজার তথ্য নেই');
-        return;
-    }
-    
-    console.log('💰 রেফারেল কমিশন দেওয়া হচ্ছে...');
-    
-    try {
-        // রেফারেল চেইন বের করুন
-        const chain = await getReferralChain(userWhoUnlocked, 3);
-        console.log('📊 রেফারেল চেইন:', chain);
-        
-        if (chain.length === 0) {
-            console.log('❌ কোনো রেফারেল পাওয়া যায়নি');
-            return;
-        }
-        
-        for (let i = 0; i < chain.length; i++) {
-            const referrer = chain[i];
-            console.log(`🔹 রেফারার ${i+1}: ${referrer}`);
-            
-            let commPercent = 0;
-            let lineName = '';
-            
-            // কমিশন পার্সেন্টেজ নির্ধারণ
-            if (i === 0) {
-                const refDoc = await db.collection('users').doc(referrer).get();
-                if (!refDoc.exists) {
-                    console.log(`❌ ${referrer} এর ডকুমেন্ট নেই`);
-                    continue;
-                }
-                const refData = refDoc.data();
-                const lvl = refData.premiumLevel || 0;
-                commPercent = lvl === 0 ? BASE_COMMISSION : 
-                    (LEVEL_CONFIG.find(l => l.level === lvl)?.commission || BASE_COMMISSION);
-                lineName = '১ম';
-                console.log(`📊 ১ম লাইন: লেভেল ${lvl}, কমিশন ${commPercent}%`);
-            } else if (i === 1) {
-                commPercent = FIXED_COMMISSION.level2 || 5;
-                lineName = '২য়';
-                console.log(`📊 ২য় লাইন: কমিশন ${commPercent}%`);
-            } else if (i === 2) {
-                commPercent = FIXED_COMMISSION.level3 || 2;
-                lineName = '৩য়';
-                console.log(`📊 ৩য় লাইন: কমিশন ${commPercent}%`);
-            }
-            
-            if (commPercent === 0) continue;
-            
-            const amount = (cost * commPercent) / 100;
-            console.log(`💰 ${referrer} পাবেন: ${amount} টাকা`);
-            
-            if (amount <= 0) continue;
-            
-            try {
-                // ⭐ FIX: arrayUnion ব্যবহার করুন
-                const newTx = {
-                    type: `রেফারেল কমিশন (${lineName} লাইন)`,
-                    amount: amount,
-                    details: `${userWhoUnlocked} → লেভেল ${unlockedLevel} আনলক (${commPercent}%)`,
-                    date: new Date().toLocaleString('bn-BD', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    })
-                };
-                
-                // 🔥 সঠিকভাবে আপডেট করুন
-                await db.collection('users').doc(referrer).update({
-                    balance: firebase.firestore.FieldValue.increment(amount),
-                    referralEarnings: firebase.firestore.FieldValue.increment(amount),
-                    transactions: firebase.firestore.FieldValue.arrayUnion(newTx)
-                });
-                
-                console.log(`✅ ${referrer} পেয়েছেন ${amount} টাকা (${lineName} লাইন)`);
-                
-                // লোকাল ডেটা আপডেট
-                if (referrer === currentUsername) {
-                    user.balance = (user.balance || 0) + amount;
-                    user.referralEarnings = (user.referralEarnings || 0) + amount;
-                    if (!user.transactions) user.transactions = [];
-                    user.transactions.push(newTx);
-                }
-                
-            } catch (e) {
-                console.error(`❌ ${referrer} আপডেট করতে সমস্যা:`, e);
-                if (e.code === 'permission-denied') {
-                    showToast('⚠️ Firestore Rules আপডেট করুন!', 'error');
-                }
-            }
-        }
-        
-        // UI আপডেট
-        await updateUI();
-        await countReferralLevels();
-        await loadReferralBonusHistory();
-        showToast('✅ কমিশন প্রক্রিয়াকরণ সম্পূর্ণ!', 'success');
-        
-    } catch (e) {
-        console.error('❌ কমিশন প্রক্রিয়ায় সমস্যা:', e);
-        showToast('কমিশন দিতে সমস্যা: ' + e.message, 'error');
-    }
-}
+            if (!userWhoUnlocked || !currentUsername) return;
 
-        // 4. লেভেল আনলক ফাংশন
+            try {
+                const chain = await getReferralChain(userWhoUnlocked, 3);
+                if (chain.length === 0) return;
+
+                for (let i = 0; i < chain.length; i++) {
+                    const referrer = chain[i];
+                    let commPercent = 0;
+                    let lineName = '';
+
+                    if (i === 0) {
+                        const refDoc = await db.collection('users').doc(referrer).get();
+                        if (!refDoc.exists) continue;
+                        const refData = refDoc.data();
+                        const lvl = refData.premiumLevel || 0;
+                        commPercent = lvl === 0 ? BASE_COMMISSION :
+                            (LEVEL_CONFIG.find(l => l.level === lvl)?.commission || BASE_COMMISSION);
+                        lineName = '১ম';
+                    } else if (i === 1) {
+                        commPercent = FIXED_COMMISSION.level2 || 5;
+                        lineName = '২য়';
+                    } else if (i === 2) {
+                        commPercent = FIXED_COMMISSION.level3 || 2;
+                        lineName = '৩য়';
+                    }
+
+                    if (commPercent === 0) continue;
+                    const amount = (cost * commPercent) / 100;
+                    if (amount <= 0) continue;
+
+                    try {
+                        const newTx = {
+                            type: `রেফারেল কমিশন (${lineName} লাইন)`,
+                            amount: amount,
+                            details: `${userWhoUnlocked} → লেভেল ${unlockedLevel} আনলক (${commPercent}%)`,
+                            date: new Date().toLocaleString('bn-BD', {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            })
+                        };
+
+                        await db.collection('users').doc(referrer).update({
+                            balance: firebase.firestore.FieldValue.increment(amount),
+                            referralEarnings: firebase.firestore.FieldValue.increment(amount),
+                            transactions: firebase.firestore.FieldValue.arrayUnion(newTx)
+                        });
+
+                        if (referrer === currentUsername) {
+                            user.balance = (user.balance || 0) + amount;
+                            user.referralEarnings = (user.referralEarnings || 0) + amount;
+                            if (!user.transactions) user.transactions = [];
+                            user.transactions.push(newTx);
+                        }
+                    } catch (e) {
+                        console.error('কমিশন আপডেটে সমস্যা:', e);
+                    }
+                }
+
+                await updateUI();
+                await countReferralLevels();
+                await loadReferralBonusHistory();
+
+            } catch (e) {
+                console.error('কমিশন প্রক্রিয়ায় সমস্যা:', e);
+            }
+        }
+
         async function unlockLevel(level) {
             const config = LEVEL_CONFIG.find(l => l.level === level);
             if (!config) {
@@ -3218,23 +3254,20 @@ async function debugReferralCommission(userWhoUnlocked, unlockedLevel, cost) {
                 amount: cost,
                 date: new Date().toLocaleString('bn-BD')
             });
-            
+
             await saveCurrentUser();
 
-            // ✅ রেফারেল কমিশন দিন
             if (user.referredBy) {
-                console.log('রেফারেল কমিশন দেওয়া হচ্ছে...');
                 await giveReferralCommission(currentUsername, level, cost);
             }
 
             await saveCurrentUser();
             await updateUI();
             await countReferralLevels();
-            
+
             showToast(`✅ লেভেল ${level} আনলক! কমিশন ${config.commission}%`, 'success');
         }
 
-        // 5. রেফারেল বোনাস হিস্টোরি
         async function loadReferralBonusHistory() {
             const histDiv = document.getElementById('referralBonusHistory');
             if (!histDiv) return;
@@ -3319,175 +3352,60 @@ async function debugReferralCommission(userWhoUnlocked, unlockedLevel, cost) {
         //  UPDATE UI FUNCTION
         // ================================================================
         async function updateUI() {
-    try {
-        // ============================================================
-        // স্টেপ 1: Firestore থেকে সর্বশেষ ডেটা রিলোড করুন
-        // ============================================================
-        if (currentUsername) {
-            console.log('🔄 UI আপডেটের জন্য ডেটা রিলোড করা হচ্ছে...');
-            const doc = await db.collection('users').doc(currentUsername).get();
-            
-            if (doc.exists) {
-                const data = doc.data();
-                console.log('📄 রিলোড করা ডেটা:', data);
-                
-                // লোকাল ডেটা আপডেট
-                user.balance = data.balance || 0;
-                user.premiumLevel = data.premiumLevel || 0;
-                user.silverBonusTaken = data.silverBonusTaken || false;
-                user.referralCode = data.referralCode || user.referralCode;
-                user.referredBy = data.referredBy || null;
-                user.referralEarnings = data.referralEarnings || 0;
-                user.totalReferrals = data.totalReferrals || 0;
-                user.profile = data.profile || { name: '', email: '', phone: '', address: '' };
-                user.transactions = data.transactions || [];
-                user.depositRequests = data.depositRequests || [];
-                user.withdrawRequests = data.withdrawRequests || [];
-                user.username = currentUsername;
-                
-                console.log('✅ লোকাল ডেটা আপডেট হয়েছে');
-            } else {
-                console.warn('⚠️ ডকুমেন্ট পাওয়া যায়নি:', currentUsername);
+            document.getElementById('mainBalance').textContent = user.balance || 0;
+            const comm = getCurrentComm();
+            let lvlText = user.premiumLevel > 0 ?
+                `💎 প্রো লেভেল ${user.premiumLevel} (${comm}% কমিশন)` :
+                `⭐ সিলভার লেভেল (${comm}% কমিশন)`;
+            document.getElementById('levelChip').textContent = lvlText;
+            document.getElementById('globalCommission').textContent = comm + '%';
+            document.getElementById('dashComm').textContent = comm + '%';
+            document.getElementById('refLine1').textContent = comm + '%';
+            document.getElementById('refLine2').textContent = FIXED_COMMISSION.level2 + '%';
+            document.getElementById('refLine3').textContent = FIXED_COMMISSION.level3 + '%';
+
+            await countReferralLevels();
+
+            document.getElementById('refEarnNum').textContent = (user.referralEarnings || 0).toFixed(2);
+
+            // রেফার লিংক ও কোড আপডেট
+            const baseUrl = 'https://income-tax11.github.io/apk/?ref=';
+            const refLink = baseUrl + user.referralCode;
+            const refCode = user.referralCode || 'লোড হচ্ছে...';
+
+            const linkDisplay = document.getElementById('referLinkDisplay');
+            if (linkDisplay) {
+                linkDisplay.textContent = refLink;
+                linkDisplay.onclick = function() {
+                    window.open(this.textContent, '_blank');
+                };
             }
-        }
 
-        // ============================================================
-        // স্টেপ 2: ব্যালেন্স আপডেট
-        // ============================================================
-        const balanceEl = document.getElementById('mainBalance');
-        if (balanceEl) {
-            balanceEl.textContent = user.balance || 0;
-        }
+            const codeDisplay = document.getElementById('referCodeDisplay');
+            if (codeDisplay) {
+                codeDisplay.textContent = refCode;
+            }
 
-        // ============================================================
-        // স্টেপ 3: লেভেল ও কমিশন আপডেট
-        // ============================================================
-        const comm = getCurrentComm();
-        let lvlText = user.premiumLevel > 0 ?
-            `💎 প্রো লেভেল ${user.premiumLevel} (${comm}% কমিশন)` :
-            `⭐ সিলভার লেভেল (${comm}% কমিশন)`;
-        
-        const levelChip = document.getElementById('levelChip');
-        if (levelChip) {
-            levelChip.textContent = lvlText;
-        }
+            await loadReferralBonusHistory();
 
-        const globalComm = document.getElementById('globalCommission');
-        if (globalComm) {
-            globalComm.textContent = comm + '%';
-        }
+            document.getElementById('profileName').value = user.profile?.name || '';
+            document.getElementById('profileEmail').value = user.profile?.email || '';
+            document.getElementById('profilePhone').value = user.profile?.phone || '';
+            document.getElementById('profileAddress').value = user.profile?.address || '';
 
-        const dashComm = document.getElementById('dashComm');
-        if (dashComm) {
-            dashComm.textContent = comm + '%';
-        }
-
-        // ============================================================
-        // স্টেপ 4: রেফারেল লাইন কমিশন আপডেট
-        // ============================================================
-        const refLine1 = document.getElementById('refLine1');
-        if (refLine1) {
-            refLine1.textContent = comm + '%';
-        }
-
-        const refLine2 = document.getElementById('refLine2');
-        if (refLine2) {
-            refLine2.textContent = (FIXED_COMMISSION.level2 || 5) + '%';
-        }
-
-        const refLine3 = document.getElementById('refLine3');
-        if (refLine3) {
-            refLine3.textContent = (FIXED_COMMISSION.level3 || 2) + '%';
-        }
-
-        // ============================================================
-        // স্টেপ 5: রেফারেল কাউন্ট আপডেট
-        // ============================================================
-        await countReferralLevels();
-
-        // ============================================================
-        // স্টেপ 6: রেফারেল আয় আপডেট
-        // ============================================================
-        const refEarnNum = document.getElementById('refEarnNum');
-        if (refEarnNum) {
-            refEarnNum.textContent = (user.referralEarnings || 0).toFixed(2);
-        }
-
-        // ============================================================
-        // স্টেপ 7: রেফারেল লিংক আপডেট
-        // ============================================================
-        const baseUrl = 'https://income-tax11.github.io/apk/?ref=';
-        const link = baseUrl + user.referralCode;
-        const anchor = document.getElementById('referLinkAnchor');
-        if (anchor) {
-            anchor.href = link;
-            anchor.textContent = link;
-        }
-
-        // ============================================================
-        // স্টেপ 8: রেফারেল বোনাস হিস্টোরি লোড
-        // ============================================================
-        await loadReferralBonusHistory();
-
-        // ============================================================
-        // স্টেপ 9: প্রোফাইল আপডেট
-        // ============================================================
-        const profileName = document.getElementById('profileName');
-        if (profileName) {
-            profileName.value = user.profile?.name || '';
-        }
-
-        const profileEmail = document.getElementById('profileEmail');
-        if (profileEmail) {
-            profileEmail.value = user.profile?.email || '';
-        }
-
-        const profilePhone = document.getElementById('profilePhone');
-        if (profilePhone) {
-            profilePhone.value = user.profile?.phone || '';
-        }
-
-        const profileAddress = document.getElementById('profileAddress');
-        if (profileAddress) {
-            profileAddress.value = user.profile?.address || '';
-        }
-
-        // ============================================================
-        // স্টেপ 10: ট্রানজেকশন হিস্টোরি আপডেট
-        // ============================================================
-        const txnDiv = document.getElementById('transactionHistoryList');
-        if (txnDiv) {
+            const txnDiv = document.getElementById('transactionHistoryList');
             if (!user.transactions || user.transactions.length === 0) {
                 txnDiv.innerHTML = '<p class="text-muted text-center">কোনো লেনদেন নেই</p>';
             } else {
                 txnDiv.innerHTML = user.transactions.slice().reverse().map(tx =>
-                    `<div class="txn-item">
-                        <div class="flex-between">
-                            <span><strong>${tx.type}</strong> · ৳${tx.amount}</span>
-                            <span class="txn-date">${tx.date || ''}</span>
-                        </div>
-                        ${tx.details ? `<div class="txn-detail">${tx.details}</div>` : ''}
-                    </div>`
+                    `<div class="txn-item"><div class="flex-between"><span><strong>${tx.type}</strong> · ৳${tx.amount}</span><span class="txn-date">${tx.date || ''}</span></div>${tx.details ? `<div class="txn-detail">${tx.details}</div>` : ''}</div>`
                 ).join('');
             }
+
+            renderLevels();
+            renderCommissionTags();
+            updateDashLevelTags();
         }
-
-        // ============================================================
-        // স্টেপ 11: লেভেল ও কমিশন ট্যাগ রেন্ডার
-        // ============================================================
-        renderLevels();
-        renderCommissionTags();
-        updateDashLevelTags();
-
-        console.log('✅ UI আপডেট সম্পূর্ণ হয়েছে');
-
-    } catch (error) {
-        console.error('❌ UI আপডেটে সমস্যা:', error);
-        console.error('📋 Error Code:', error.code);
-        console.error('📝 Error Message:', error.message);
-        showToast('UI আপডেটে সমস্যা: ' + error.message, 'error');
-    }
-}
 
         // ================================================================
         //  SILVER BONUS
@@ -3845,22 +3763,139 @@ async function debugReferralCommission(userWhoUnlocked, unlockedLevel, cost) {
         // ================================================================
         //  COPY FUNCTIONS
         // ================================================================
-        function copyRefLink() {
-            const text = document.getElementById('referLinkAnchor').textContent;
+        function copyToClipboard(text, successMsg) {
             if (navigator.clipboard) {
-                navigator.clipboard.writeText(text).then(() => showToast('রেফার লিংক কপি হয়েছে', 'success'))
-                    .catch(() => fallbackCopy(text));
-            } else { fallbackCopy(text); }
+                navigator.clipboard.writeText(text)
+                    .then(() => showToast(successMsg || 'কপি হয়েছে!', 'success'))
+                    .catch(() => fallbackCopy(text, successMsg));
+            } else {
+                fallbackCopy(text, successMsg);
+            }
         }
 
-        function fallbackCopy(text) {
+        function fallbackCopy(text, successMsg) {
             const ta = document.createElement('textarea');
             ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
             document.body.appendChild(ta);
             ta.select();
             document.execCommand('copy');
             document.body.removeChild(ta);
-            showToast('রেফার লিংক কপি হয়েছে', 'success');
+            showToast(successMsg || 'কপি হয়েছে!', 'success');
+        }
+
+        function initCopyButtons() {
+            const linkBtn = document.getElementById('copyRefLinkBtn');
+            if (linkBtn) {
+                linkBtn.addEventListener('click', function() {
+                    const link = document.getElementById('referLinkDisplay').textContent;
+                    copyToClipboard(link, '🔗 রেফার লিংক কপি হয়েছে!');
+                    this.textContent = '✅ কপি!';
+                    setTimeout(() => { this.textContent = '📋 কপি'; }, 2000);
+                });
+            }
+
+            const codeBtn = document.getElementById('copyRefCodeBtn');
+            if (codeBtn) {
+                codeBtn.addEventListener('click', function() {
+                    const code = document.getElementById('referCodeDisplay').textContent;
+                    copyToClipboard(code, '🔑 রেফার কোড কপি হয়েছে!');
+                    this.textContent = '✅ কপি!';
+                    setTimeout(() => { this.textContent = '📋 কপি'; }, 2000);
+                });
+            }
+
+            // দ্বিতীয় কপি লিংক বাটন (শেয়ার সেকশনে)
+            const copyBtn2 = document.getElementById('copyRefLinkBtn2');
+            if (copyBtn2) {
+                copyBtn2.addEventListener('click', function() {
+                    const link = document.getElementById('referLinkDisplay').textContent;
+                    copyToClipboard(link, '🔗 রেফার লিংক কপি হয়েছে!');
+                    this.innerHTML = '<span style="font-size:16px;">✅</span> কপি!';
+                    setTimeout(() => { 
+                        this.innerHTML = '<span style="font-size:16px;">📋</span> কপি লিংক'; 
+                    }, 2000);
+                });
+            }
+        }
+
+        // ================================================================
+        //  শেয়ার বাটন ফাংশন
+        // ================================================================
+
+        function getShareUrls(link, text) {
+            const encodedLink = encodeURIComponent(link);
+            const encodedText = encodeURIComponent(text || 'আমার রেফারেল লিংকে জয়েন করুন! 🚀 ইনকাম করুন!');
+            
+            return {
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedLink}&quote=${encodedText}`,
+                messenger: `https://www.facebook.com/dialog/send?link=${encodedLink}&app_id=123456789&redirect_uri=${encodedLink}`,
+                whatsapp: `https://api.whatsapp.com/send?text=${encodedText}%20${encodedLink}`,
+                telegram: `https://t.me/share/url?url=${encodedLink}&text=${encodedText}`,
+                tiktok: `https://www.tiktok.com/@incometax_team?refer=${encodedLink}`,
+                email: `mailto:?subject=${encodedText}&body=আমার রেফারেল লিংক:%0A${encodedLink}`
+            };
+        }
+
+        function shareOnPlatform(platform) {
+            const linkDisplay = document.getElementById('referLinkDisplay');
+            if (!linkDisplay) {
+                showToast('লিংক পাওয়া যায়নি', 'error');
+                return;
+            }
+            
+            const link = linkDisplay.textContent;
+            const text = `আমার INCOME TAX রেফারেল লিংকে জয়েন করুন! 🚀 কমিশন পেতে এখনই রেজিস্টার করুন!`;
+            
+            const urls = getShareUrls(link, text);
+            const url = urls[platform];
+            
+            if (!url) {
+                showToast('এই প্ল্যাটফর্মে শেয়ার করা সম্ভব নয়', 'error');
+                return;
+            }
+            
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            
+            if (platform === 'whatsapp' && isMobile) {
+                window.open(url, '_blank');
+            } else if (platform === 'telegram' && isMobile) {
+                window.open(url, '_blank');
+            } else if (platform === 'messenger' && isMobile) {
+                window.open(url, '_blank');
+            } else {
+                if (platform === 'email') {
+                    window.location.href = url;
+                } else {
+                    window.open(url, '_blank', 'width=600,height=500');
+                }
+            }
+            
+            showToast(`📢 ${platform.charAt(0).toUpperCase() + platform.slice(1)} তে শেয়ার করা হচ্ছে...`, 'success');
+        }
+
+        function initShareButtons() {
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const platform = this.dataset.platform;
+                    if (platform) {
+                        this.style.transform = 'scale(0.95)';
+                        setTimeout(() => { this.style.transform = 'scale(1)'; }, 200);
+                        shareOnPlatform(platform);
+                    }
+                });
+                
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.boxShadow = '0 4px 16px rgba(0,0,0,0.15)';
+                });
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
         }
 
         // ================================================================
@@ -4080,7 +4115,6 @@ async function debugReferralCommission(userWhoUnlocked, unlockedLevel, cost) {
             document.getElementById('bonusFromLevel').addEventListener('click', claimSilver);
             document.getElementById('depositBtn').addEventListener('click', depositReq);
             document.getElementById('withdrawBtn').addEventListener('click', withdrawReq);
-            document.getElementById('copyRefBtn').addEventListener('click', copyRefLink);
             document.getElementById('quickUpgrade').addEventListener('click', () => {
                 document.querySelector('[data-nav="level"]')?.click();
             });
@@ -4105,6 +4139,20 @@ async function debugReferralCommission(userWhoUnlocked, unlockedLevel, cost) {
                     showToast('কপি হয়েছে', 'success');
                 }
             });
+
+            // ===== কপি বাটন ইনিশিয়ালাইজ =====
+            initCopyButtons();
+
+            // ===== শেয়ার বাটন ইনিশিয়ালাইজ =====
+            initShareButtons();
+
+            // ===== রেফার কোড ফিল্ডে ফোকাস ইফেক্ট =====
+            const refInput = document.getElementById('regReferralCode');
+            if (refInput) {
+                refInput.addEventListener('focus', function() {
+                    this.classList.remove('error');
+                });
+            }
 
             initPasswordToggles();
             initForgotPassword();
